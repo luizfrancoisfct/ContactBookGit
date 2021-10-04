@@ -102,4 +102,21 @@ public class ContactBook {
         }
         return false;
     }
+    
+    public String getContactName(int phone){
+        String name = null;
+        for(int i = (this.counter-1); i >=0; i++){
+            if(contacts[i].getPhone()==phone){
+                name = contacts[i].getName;
+                break;
+            }
+        }
+        
+        return name;
+    }
+    
+    
+    
+    
+    
 }
