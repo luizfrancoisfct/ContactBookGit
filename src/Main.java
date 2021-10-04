@@ -26,6 +26,9 @@ public class Main {
     public static final String BOOK_EMPTY = "Contact book empty.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
+    public static final String NUMBER_NOT_EXISTS = "Phone number does not exist." ;
+    public static final String EXISTS_SAME_NUMBER = "There are contacts that share phone numbers." ;
+    public static final String NOT_EXISTS_SAME_NUMBER = "All contacts have different phone numbers." ;
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -158,9 +161,18 @@ public class Main {
 
     //new methods
 
-    private static void checkSameNumber(ContactBook cBook) {
+    private static void getContact(ContactBook cBook) {
+
+        //TODO
+
+        System.out.println(NUMBER_NOT_EXISTS);
     }
 
-    private static void getContact(ContactBook cBook) {
+    private static void checkSameNumber(ContactBook cBook) {
+
+        if (cBook.checkSameNumber())
+            System.out.println(EXISTS_SAME_NUMBER);
+        else
+            System.out.println(NOT_EXISTS_SAME_NUMBER);
     }
 }
