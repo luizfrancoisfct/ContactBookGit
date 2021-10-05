@@ -3,7 +3,6 @@ import contactBook.ContactBook;
 
 import java.util.Scanner;
 
-
 public class Main {
     //Constantes que definem os comandos
     public static final String ADD_CONTACT    = "AC";
@@ -18,12 +17,13 @@ public class Main {
     public static final String QUIT           = "Q";
 
     //Constantes que definem as mensagens para o utilizador
-    public static final String CONTACT_EXISTS = "Contact already exists.";
-    public static final String NAME_NOT_EXIST = "Contact does not exist.";
-    public static final String CONTACT_ADDED = "Contact added.";
-    public static final String CONTACT_REMOVED = "Contact removed.";
-    public static final String CONTACT_UPDATED = "Contact updated.";
-    public static final String BOOK_EMPTY = "Contact book empty.";
+    public static final String OUTPUT_PREFIX = "contactBook.";
+    public static final String CONTACT_EXISTS = OUTPUT_PREFIX + "Contact already exists.";
+    public static final String NAME_NOT_EXIST = OUTPUT_PREFIX + "Contact does not exist.";
+    public static final String CONTACT_ADDED = OUTPUT_PREFIX + "Contact added.";
+    public static final String CONTACT_REMOVED = OUTPUT_PREFIX + "Contact removed.";
+    public static final String CONTACT_UPDATED = OUTPUT_PREFIX + "Contact updated.";
+    public static final String BOOK_EMPTY = OUTPUT_PREFIX + "Contact book empty.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
     public static final String NUMBER_NOT_EXISTS = "Phone number does not exist." ;
@@ -59,7 +59,7 @@ public class Main {
                     listAllContacts(cBook);
                     break;
                 case GET_CONTACT:
-                    getContact(cBook);
+                    getContact(in, cBook);
                     break;
                 case EQUAL_NUMBER:
                     checkSameNumber(cBook);
@@ -161,11 +161,15 @@ public class Main {
 
     //new methods
 
-    private static void getContact(ContactBook cBook) {
-
-        //TODO
-
-        System.out.println(NUMBER_NOT_EXISTS);
+    private static void getContact(Scanner in, ContactBook cBook) {
+        int phone = in.nextInt();
+        in.nextLine();
+        String res_name = cBook.getContactName(phone);
+        if (res_name == null){
+            System.out.println(NUMBER_NOT_EXISTS);
+        } else {
+            System.out.println(res_name);
+        }
     }
 
     private static void checkSameNumber(ContactBook cBook) {
